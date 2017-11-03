@@ -1,8 +1,5 @@
 
 {include file='public/header'}
-
-<title>栏目管理</title>
-</head>
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
     <span class="c-gray en">></span>
@@ -42,12 +39,13 @@
                 <td><input type="checkbox" name="" value=""></td>
                 <td>{$vo.id}</td>
                 <td>{$vo.name}</td>
-                <td class="text-c"><input size="3" attr-id="{$vo.id}" name="listorder" value="{$vo.listorder}"></td>
+                <td class="text-c listorder">
+                    <input size="3" attr-id="{$vo.id}" name="listorder" value="{$vo.listorder}"></td>
                 <td>{$vo.create_time|date="Y-m-d H:i",###}</td>
-                <td class="td-status">{$vo.status|status}</td>
+                <td class="td-status"><a href="{:url('category/status', ['id' => $vo.id, 'status' => $vo.status == 1?0:1])}">{$vo.status|status}</a></td>
                 <td class="f-14"><a href="{:url('category/index',['parent_id' => $vo.id] )}">获取子栏目</a>
                     <a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','{:url('category/edit',['id' => $vo.id])}', '1','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
-                    <a title="删除" href="javascript:;" onclick="system_category_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                    <a title="删除" href="javascript:;" onclick="system_category_del(this,'{:url('category/status',['id' => $vo.id, 'status' => -1])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
             </tr>
             {/volist}
         </table>
@@ -66,7 +64,6 @@
     var SCOPE ={
        'listorder_url' : "{:url('category/listorder')}"
     };
-
 
     $('.table-sort').dataTable({
         "aaSorting": [[ 1, "desc" ]],//默认第几个排序

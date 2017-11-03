@@ -13,5 +13,6 @@ Class Category extends Validate {
     protected $scene =[
         'add' => ['name', 'parent_id','id'],      //添加
         'listorder' => ['id', 'listorder'],  //排序
+        'status' => ['status','id'],
     ];
 }

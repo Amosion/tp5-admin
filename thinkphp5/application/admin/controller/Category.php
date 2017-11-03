@@ -83,8 +83,29 @@ class Category extends Controller
 
     /**排序逻辑**/
     public function listorder($id, $listorder){
-        echo $id."<br>";
-        echo $listorder."<br>";
+        $res = $this ->obj ->save(['listorder' => $listorder], ['id' => $id]);
+        if($res){
+            $this->result($_SERVER['HTTP_REFERER'],1,'success');
+        }else{
+            $this->result($_SERVER['HTTP_REFERER'],0,'更新失败');
+        }
     }
+
+    /**修改状态**/
+    public function status(){
+        $data = input('get.');
+
+        $validate = validate('Category');
+        if(!$validate -> scene('status') -> check($data)) {
+            $this -> error($validate->getError());
+        }
+        $res = $this->obj->save(['status' => $data['status']], ['id' => $data['id']]);
+        if($res){
+            $this->success('状态更新成功');
+        }else {
+            $this->error('状态更新失败');
+        }
+    }
+
 
 }

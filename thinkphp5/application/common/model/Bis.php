@@ -21,7 +21,7 @@ class Bis extends BaseModel
         $order = [
             'id' =>'desc'
         ];
-        return $this->where($data)->order($order)->paginate(3);
+        return $this->where($data)->order($order)->paginate(5);
     }
 
 }

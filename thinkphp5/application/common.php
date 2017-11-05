@@ -64,6 +64,7 @@ function bisRegister($status){
 }
 
 /**
+ * 分页
  * @param $obj
  * @return string
  */
@@ -74,4 +75,19 @@ function pagination($obj) {
     // 优化的方案
     $params = request()->param();
     return '<div class="cl pd-5 bg-1 bk-gray mt-20 tp5-o2o">'.$obj->appends($params)->render().'</div>';
+}
+
+function getSeCityName($path){
+    if(empty($path)){
+        $this->error('path为空');
+    }
+    if(preg_match('/,/', $path)){
+        $cityPath = explode(',', $path);
+        $cityId = $cityPath[1];
+    }else{
+        $cityId = $path;
+    }
+    $city = model('City')->get($cityId);
+    return $city->name;
+
 }

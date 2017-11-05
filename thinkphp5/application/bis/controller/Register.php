@@ -103,7 +103,7 @@ class Register extends Controller
         $url = request()->domain().url('bis/register/waiting',['id' => $bisId]);
         $title = "O2O商家入驻申请";
         $content = "你提交的入驻申请需等待平台审核，你可以通过点击链接<a href='".$url."' target='_blank'>查看</a>查看审核状态";
-        //\PHPMailer\Email::sendMail($data['email'],$title,$content);
+        \PHPMailer\Email::sendMail($data['email'],$title,$content);
 
         $this->success('申请成功',url('register/waiting',['id' => $bisId]));
     }

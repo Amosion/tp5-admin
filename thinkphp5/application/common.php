@@ -77,6 +77,11 @@ function pagination($obj) {
     return '<div class="cl pd-5 bg-1 bk-gray mt-20 tp5-o2o">'.$obj->appends($params)->render().'</div>';
 }
 
+/**
+ *　二级城市获取
+ * @param $path
+ * @return bool|string
+ */
 function getSeCityName($path){
     if(empty($path)){
         $this->error('path为空');

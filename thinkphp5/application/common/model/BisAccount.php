@@ -9,7 +9,7 @@
 namespace app\common\model;
 use think\Model;
 
-class BisAccount extends Model
+class BisAccount extends BaseModel
 {
     public function updateById($data, $id){
         //allowField过滤data数组中非数据表中的数据

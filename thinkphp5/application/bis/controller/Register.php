@@ -10,6 +10,7 @@ class Register extends Controller
     public function index(){
         //获取一级城市数据
         $citys = model('City')->getNormalCitysByParentId();
+        //获取一级栏目数据
         $categorys = model('Category')->getNormalCategoryByParentId();
         return $this->fetch('',[
            'citys' => $citys,
@@ -30,10 +31,9 @@ class Register extends Controller
         }
 
         //获取经纬度
-
         $Lnglat = \Map::getLnglat($data['address']);
         if(empty($Lnglat) || $Lnglat['status'] !=0 || $Lnglat['result']['precise'] !=1){
-            //$this->error('无法获取数据，或者匹配地址不准确');
+            $this->error('无法获取数据，或者匹配地址不准确');
         }
 
         //判定提交用户是否存在
@@ -58,12 +58,12 @@ class Register extends Controller
             'faren_tel' => $data['faren_tel'],
         ];
         $bisId = model('Bis')->add($bisData);
+
         //总店相关信息校验
         $data['cat'] = '';
         if(!empty($data['se_category_id'])){
             $data['cat'] = implode('|',$data['se_category_id']);
         }
-
         //总店相关信息入库
         $locationData = [
             'bis_id' => $bisId,
@@ -108,6 +108,7 @@ class Register extends Controller
         $this->success('申请成功',url('register/waiting',['id' => $bisId]));
     }
 
+    //等待页面跳转
     public function waiting($id){
         if(empty($id)){
             $this->error('id为空');

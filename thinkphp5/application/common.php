@@ -10,7 +10,10 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
-
+/**
+ * @param $status
+ * @return string
+ */
 function status($status){
     if($status == 1){
         $str = '<span class="label label-success radius">正常</span>';

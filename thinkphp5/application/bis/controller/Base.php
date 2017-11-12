@@ -30,7 +30,7 @@ class Base extends Controller
         }
    }
 
-   //
+   //获取session
     public function getLoginUser(){
         $account = session('bisAccount','','bis');
         return $account;

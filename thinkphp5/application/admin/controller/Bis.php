@@ -80,6 +80,7 @@ class Bis extends Controller
         $location = model('BisLocation')->save(['status' => $data['status']], ['bis_id' => $data['id'],'is_main' => 1]);
         $account = model('BisAccount')->save(['status' => $data['status']], ['bis_id' => $data['id'],'is_main' => 1]);
         if($res && $location && $account){
+            //发送邮件
             $this->success('状态更新成功');
         }else {
             $this->error('状态更新失败');

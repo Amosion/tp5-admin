@@ -9,13 +9,22 @@
 namespace app\common\model;
 use think\Model;
 
-class BisLocation extends Model
+class BisLocation extends BaseModel
 {
-    protected $autoWriteTimestamp = true;
-    public function add($data){
-        $data['status'] = 0;
-        $this->save($data);
-        return $this->id;
+    
+    /**
+     * 通过状态获取商家数据
+     *
+     */
+    public function getBisByStatus($status = 0,$is_main = 0){
+        $data = [
+            'status' => $status,
+			'is_main' => $is_main
+        ];
+        $order = [
+            'id' =>'desc'
+        ];
+        return $this->where($data)->order($order)->paginate(5);
     }
 
 }

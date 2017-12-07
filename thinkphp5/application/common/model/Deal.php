@@ -32,4 +32,28 @@ class Deal extends BaseModel
         return $result;
     }
 
+    /**
+     * 根据分类 以及 城市来获取 商品数据
+     * @param $categoryId
+     * @param $cityId
+     * @param int $limit
+     * @return false|\PDOStatement|string|\think\Collection
+     */
+    public function getNormalDealByCategoryCityId($categoryId,$cityId,$limit=10){
+        $data =[
+            //'end_time' => ['gt', time()],
+            'category_id' => $categoryId,
+            'city_id' => $cityId,
+            'status' => 1
+        ];
+        $order = [
+            'id' => 'desc',
+            'listorder' => 'desc'
+        ];
+        $result = $this->where($data)->order($order);
+        if($limit){
+            $result = $result->limit($limit);
+        }
+        return $result->select();
+    }
 }

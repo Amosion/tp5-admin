@@ -33,6 +33,7 @@ class Deal extends Controller
         if(!empty($data['name'])){
             $sdata['name'] = ['like','%'.$data['name'].'%'];
         }
+        $cityArrs = $categoryArrs = [];
         //获取一级城市数据
         $citys = model('City')->getNormalCitys();
         foreach ($citys as $city){
@@ -40,10 +41,12 @@ class Deal extends Controller
         }
         //获取一级栏目数据
         $categorys = model('Category')->getNormalCategoryByParentId();
+
         foreach ($categorys as $category){
             $categoryArrs[$category->id] = $category->name;
         }
         $deals = $this->obj->getNormalDeals($sdata);
+
         return $this->fetch('',[
             'citys' => $citys,
             'categorys'=> $categorys,
@@ -55,7 +58,6 @@ class Deal extends Controller
             'end_time' => empty($data['end_time']) ? '' : $data['end_time'],
             'cityArrs' => $cityArrs,
             'categoryArrs' => $categoryArrs
-
         ]);
     }
 

@@ -106,6 +106,4 @@ class Category extends Controller
             $this->error('状态更新失败');
         }
     }
-
-
 }

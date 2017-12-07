@@ -13,6 +13,7 @@ class Category extends Model
         return $this->save($data);
     }
 
+    //获取一级分类
     public function getNormalFirstCategory(){
         $data = [
             'status' => 1,
@@ -26,6 +27,7 @@ class Category extends Model
 
     }
 
+    //获取二级分类
     public function getNormalFirstCategorys($parent_id = 0){
         $data = [
             'parent_id' => $parent_id,
@@ -42,6 +44,7 @@ class Category extends Model
         return $result;
     }
 
+    //根据parentId获取分类
     public function getNormalCategoryByParentId($parent_id = 0){
         $data = [
             'status' => 1,
@@ -53,4 +56,36 @@ class Category extends Model
         ];
         return $this->where($data)->order($order)->select();
     }
+
+    //根据limit获取一级分类
+    public function getNormalRecommendCategoryByParentId($id,$limit=5){
+        $data = [
+            'parent_id' => $id,
+            'status' => 1
+        ];
+        $order = [
+            'id' => 'desc',
+            'listorder' => 'desc'
+        ];
+        $result = $this->where($data)->order($order);
+        if($limit){
+            $result = $result->limit($limit);
+        }
+        return $result->select();
+
+    }
+
+    //根据以上的一级分类获取二级分类
+    public function getNormalCategoryIdParentId($ids){
+        $data = [
+            'parent_id' => ['in',implode(',',$ids)],
+            'status' => 1
+        ];
+        $order =[
+            'id' => 'desc',
+            'listorder' => 'desc'
+        ];
+        return $this->where($data)->order($order)->select();
+    }
+
 }

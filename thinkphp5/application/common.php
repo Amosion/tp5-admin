@@ -99,3 +99,14 @@ function getSeCityName($path){
     return $city->name;
 
 }
+//tuan gou fen dian shu mu
+function countLocation($ids) {
+    if(!$ids) {
+        return 1;
+    }
+    if(preg_match('/,/', $ids)) {
+        $arr = explode(',', $ids);
+        return count($arr);
+    }
+
+}

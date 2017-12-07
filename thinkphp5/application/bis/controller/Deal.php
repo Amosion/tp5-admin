@@ -49,6 +49,7 @@ class Deal extends Base
             $categoryArrs[$category->id] = $category->name;
         }
         $deals = $this->obj->getNormalDeals($sdata);
+
         return $this->fetch('',[
             'citys' => $citys,
             'categorys'=> $categorys,
@@ -70,7 +71,6 @@ class Deal extends Base
      */
     public function add()
     {
-
         $bisId = $this->getLoginUser()->bis_id;;
         if(request()->isPost()){
             $data = input('post.');

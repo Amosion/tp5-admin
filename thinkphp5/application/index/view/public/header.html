@@ -2,9 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{$title}</title>
+	<link href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/common.css" rel="stylesheet">
 </head>
 <body>
-<h>header</h><br>
-</body>
-</html>
+<div class="header-bar container">
+    <div class="header-inner row">
+        <ul class="father col-lg-9">
+            <li class="pull-left"><a>{$city.name}</a></li>
+            <li class="pull-left">|</li>
+            <li class="dropdown">
+                <a id="city" data-toggle="dropdown" style="cursor: pointer">切换城市<span class="caret"></span></a>
+                <div class="dropdown-menu" aria-labelledby="city">
+                    <h5 style="padding-left: 5px">热门城市</h5>
+                    <ul class="son">
+                        {volist name="citys" id="vo"}
+                        <li><a href="{:url('index/index', ['city'=>$vo['uname']])}">{$vo.name}</a></li>
+                        {/volist}
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <ul class="col-lg-2">
+            {if condition="$user"}
+            <li class="pull-left">欢迎您：{$user->username}</li>
+            <li class="pull-left"><a href="{:url('user/logout')}">退出</a></li>
+            {else /}
+            <li class="pull-left"><a href="{:url('user/register')}">注册</a></li>
+            <li class="pull-left">|</li>
+            <li class="pull-left"><a href="{:url('user/login')}">登录</a></li>
+            {/if}
+            <li class="pull-right"><a href="{:url('bis/login/index')}">商户中心</a></li>
+        </ul>
+    </div>
+</div>

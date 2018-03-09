@@ -1,0 +1,111 @@
+/*全局样式*/
+li{list-style:none;}
+ul{padding-left: 0;}
+/*分页样式*/
+.tp5-o2o .pagination li {
+    display: inline;
+    padding-left:10px;
+
+}
+.pagination .active {
+    color: red;
+}
+/*首部样式*/
+
+.header-inner>ul>li{
+    margin-left: 5px;
+}
+.son{
+    width:155px;
+    height: auto;
+    padding:2%;
+}
+.son li{
+    display: inline;
+    margin-left: 2px;
+}
+/*导航样式*/
+.nav-list{position: relative}
+/*全部分类*/
+.first-level{
+    width:200px;
+    height: auto;
+    border-bottom: gainsboro solid 1px;
+}
+.first-level>dl>div {
+    margin: 18px 0;
+}
+.first-level>dl>div>dd {
+    margin-left: 5px;
+}
+.second-level{
+    position: absolute;
+    left: 182px;
+    z-index: 10;
+    width: 200px;
+    height: auto;
+    border: 1px solid blue;
+    display: none;
+}
+.section-item ul{
+    padding:2%;
+}
+.section-item ul li{
+    display: inline-block;
+}
+.nav-cate span{
+     color: #fff;
+     background-color: #ff62ee;
+     padding-right: 100px;
+     padding-left:10px;
+     display: inline-block;
+ }
+.nav-cate {
+    position: relative;
+    z-index: 0;
+}
+
+/*首页团购商户*/
+ul.nav-items {
+    position: relative;
+    z-index: 0;
+    padding-right: 60%;
+    display: inline-block;
+    background-color: #2E2D3C;
+    height: 39px;
+
+}
+ul.nav-items
+.nav-item {
+     float:left;
+ }
+
+a.item h4{
+    padding-right: 20px;
+    padding-left: 20px;
+    color: #fff;
+}
+ul.nav-items
+.nav-item:hover{
+    background-color: rgba(0,0,0,0.5);
+    z-index: 10;
+}
+
+/*团购商品列表*/
+.j-card {
+    margin-right: 30px;
+    padding: 5px 5px;
+    border: #000 solid 2px;
+    border-radius: 10px;
+}
+
+.borderbox img {
+    width: 200px;
+    height: 200px;
+}
+
+/*轮播图*/
+.ad-pic {
+    height: 285px;
+    width: 600px;
+}
